@@ -15,11 +15,17 @@ Affected games this script fixes include:
 
 Also games installed as snaps and flatpaks do share this fate and can be fixed by wrapping them with this script.
 
+## Why this fork?
+
+This is an actively maintained fork of https://github.com/alkazar/steamos-fg.
+
+Big thanks to [alkazar](https://github.com/alkazar) for the original code.
+
 ## Installation
 
 Run the following command:
 
-`sudo curl https://raw.githubusercontent.com/alkazar/steamos-fg/master/steamos-fg -o /usr/local/bin/steamos-fg && sudo chmod a+x /usr/local/bin/steamos-fg`
+`sudo curl https://raw.githubusercontent.com/oolongbrothers/steamos-fg/master/steamos-fg -o /usr/local/bin/steamos-fg && sudo chmod a+x /usr/local/bin/steamos-fg`
 
 ## Usage
 
@@ -33,12 +39,13 @@ You can do this is by editing the `.desktop` files and prepending the command wi
 
 Example locations of `.desktop` files, here for Debian/Ubuntu:
 
-||system-wide|user|
+|Package format|system-wide|user|
 |---:|:---|:---|
+|**deb**|`/usr/share/applications/`|`${HOME}/.local/share/applications/`|
 |**Snap**|`/var/lib/snapd/desktop/applications`|-|
 |**Flatpak**|`/var/lib/flatpak/exports/share/applications`|`${HOME}/.local/share/flatpak/exports/share/applications`|
 
-There is a gotcha however: In its "Add Desktop Shortcut" GUI, Steam ignores all desktop shortcuts where the exacutable has steam in the filename (the arguments are fine).
+There is a gotcha however: In its "Add Desktop Shortcut" GUI, Steam ignores all desktop shortcuts where the executable has *steam* in the filename (is is fine to have the string *steam* appear in the arguments though).
 
 To fix this, create a link to `steamos-fg` with a different name:
 
@@ -62,7 +69,7 @@ Exec=/usr/local/bin/gameros-fg /usr/bin/flatpak run --branch=stable --arch=x86_6
 
 ## Notes
 
-This script was tested on Arch and Ubuntu and has been reported to work on SteamOS.
+This script was tested on Ubuntu and but should work on SteamOS and Arch.
 
 ## Package dependencies
 
@@ -89,4 +96,4 @@ On Ubuntu, you will need these packages:
 
 Instead of this hack, you could fix the problems where they stem from, the `steamos-compositor`.
 
-Have a look at [steamos-compositor-plus](https://github.com/gamer-os/steamos-compositor-plus), which is part of SteamOS alternative [GamerOS](https://gamer-os.github.io/).
+For a fixed version of `steamos-compositor`, have a look at [steamos-compositor-plus](https://github.com/gamer-os/steamos-compositor-plus), which is part of SteamOS alternative [GamerOS](https://gamer-os.github.io/) by [alkazar](https://github.com/alkazar), the original author of steamos-fg.
